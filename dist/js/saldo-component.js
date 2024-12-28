@@ -7,7 +7,7 @@ if (elementoSaldo != null) {
 }
 if (elementoDataAcesso != null) {
     const dataAcesso = new Date();
-    elementoDataAcesso.textContent = formatarData(dataAcesso); // dataAcesso.toLocaleString("pt-br", {
+    elementoDataAcesso.textContent = formatarData(dataAcesso, FormatoData.DIA_SEMANA_DIA_MES_ANO); // dataAcesso.toLocaleString("pt-br", {
     //     weekday: "long",
     //     day: '2-digit',
     //     month: '2-digit',

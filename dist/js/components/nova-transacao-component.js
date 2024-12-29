@@ -1,3 +1,7 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const TipoTransacao_js_1 = require("../types/TipoTransacao.js");
+const saldo_component_js_1 = require("./saldo-component.js");
 const elementoFormulario = document.querySelector(".block-nova-transacao form");
 elementoFormulario.addEventListener("submit", function (evento) {
     evento.preventDefault();
@@ -12,17 +16,18 @@ elementoFormulario.addEventListener("submit", function (evento) {
     let tipoTransacao = inputTipoTransacao.value;
     let valor = inputValor.valueAsNumber;
     let data = new Date(inputData.value);
-    if (tipoTransacao == TipoTransacao.DEPOSITO) {
+    let saldo = (0, saldo_component_js_1.getSaldo)();
+    if (tipoTransacao == TipoTransacao_js_1.TipoTransacao.DEPOSITO) {
         saldo += valor;
     }
-    else if (tipoTransacao == TipoTransacao.TRANSFERENCIA || tipoTransacao == TipoTransacao.PAGAMENTO_BOLETO) {
+    else if (tipoTransacao == TipoTransacao_js_1.TipoTransacao.TRANSFERENCIA || tipoTransacao == TipoTransacao_js_1.TipoTransacao.PAGAMENTO_BOLETO) {
         saldo -= valor;
     }
     else {
         alert("Tipo de transação inválido!");
         return;
     }
-    elementoSaldo.textContent = formatarMoeda(saldo); //saldo.toLocaleString("pt-br", { currency: "BRL", style: "currency" });      // toString();
+    (0, saldo_component_js_1.atualizarSaldo)(saldo); // elementoSaldo.textContent = formatarMoeda(saldo)    //saldo.toLocaleString("pt-br", { currency: "BRL", style: "currency" });      // toString();
     const novaTransacao = {
         tipoTransacao: tipoTransacao,
         valor: valor,

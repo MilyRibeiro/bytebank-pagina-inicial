@@ -1,8 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.formatarMoeda = formatarMoeda;
+exports.formatarData = formatarData;
+const FormatoData_js_1 = require("../types/FormatoData.js");
 function formatarMoeda(valor) {
     return valor.toLocaleString("pt-br", { currency: "BRL", style: "currency" });
 }
-function formatarData(data, formato = FormatoData.PADRAO) {
-    if (formato == FormatoData.DIA_SEMANA_DIA_MES_ANO) {
+function formatarData(data, formato = FormatoData_js_1.FormatoData.PADRAO) {
+    if (formato == FormatoData_js_1.FormatoData.DIA_SEMANA_DIA_MES_ANO) {
         return data.toLocaleDateString("pt-br", {
             weekday: "long",
             day: "2-digit",
@@ -10,7 +15,7 @@ function formatarData(data, formato = FormatoData.PADRAO) {
             year: "numeric"
         });
     }
-    else if (formato == FormatoData.DIA_MES) {
+    else if (formato == FormatoData_js_1.FormatoData.DIA_MES) {
         return data.toLocaleDateString("pt-br", { day: "2-digit", month: "2-digit" });
     }
     return data.toLocaleDateString("pt-br");
